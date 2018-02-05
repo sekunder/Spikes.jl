@@ -13,7 +13,7 @@ include("metadata.jl")
 ################################################################################
 include("SpikeTrains.jl")
 include("poissonproc.jl")
-include("CRCNS/CRCNS.jl")
+# include("CRCNS/CRCNS.jl")
 
 ################################################################################
 #### Miscellaneous functions and constants
