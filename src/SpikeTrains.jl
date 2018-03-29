@@ -47,7 +47,7 @@ Returns a `N_bins` by `N_cells` matrix where the `i,j`th entry is the number of
 spikes that occurred in bin `i` from neuron `j`. By default returns a histogram
 of spikes that happened during stimulus presentation. To truncate/extend the
 histogram, specify `N_bins`. Truncation ignores spikes that happen later than
-the end of the bins; extension pads with 0s.
+the end of the bins; extension pads with 0s. `binsize` is in seconds.
 
 """
 function histogram(ST::SpikeTrains, binsize::Float64;
