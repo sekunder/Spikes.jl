@@ -7,9 +7,9 @@ A wrapper object for spike trains. `TT` are the spike times, `I` are the
 indices/identities of the neurons.
 
 """
-type SpikeTrains
+mutable struct SpikeTrains
     TT::Vector{Vector{Float64}}
-    I::Vector{Int}
+    # I::Vector{Int} # move this to metadata
     rec_start::Float64  # usually just 0.0
     rec_finish::Float64 # defaults to maximum(map(maximum,TT))
     stim_start::Float64 # the start and end times of stimulus presentation
@@ -20,14 +20,14 @@ type SpikeTrains
     # TT[i] is I[i]. I will make sure this is enforced throughout the rest of
     # this project.
 
-    function SpikeTrains(TT, I=1:length(TT);
+    function SpikeTrains(TT;
         stim_start=0.0, stim_finish=maximum(map(maximum, TT)),
         rec_start=0.0, rec_finish=max(stim_finish, maximum(map(maximum, TT))),
         kwargs...)
         # use I to select which spike trains to keep, and while we're at it make
         # sure that TT ends up being the right type.
         trains = [map(Float64, TT[i][rec_start .< TT[i] .< rec_finish]) for i in I]
-        new(trains, I, rec_start, rec_finish, stim_start, stim_finish, Dict(kwargs))
+        new(trains, rec_start, rec_finish, stim_start, stim_finish, Dict(kwargs))
     end
 end
 
