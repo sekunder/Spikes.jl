@@ -5,7 +5,7 @@ Includes types and methods for handling spike trains.
 """
 module Spikes
 
-import Base.show
+import Base: show, isequal, hash
 include("metadata.jl")
 
 ################################################################################
@@ -19,7 +19,7 @@ include("poissonproc.jl")
 #### Miscellaneous functions and constants
 ################################################################################
 
-export show,
+export show, isequal, hash,
        SpikeTrains, histogram, raster, n_cells,
        inhomogeneous_poisson_process
 
