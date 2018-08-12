@@ -19,7 +19,7 @@ include("poissonproc.jl")
 #### Miscellaneous functions and constants
 ################################################################################
 
-export show, isequal, hash,
+export show, isequal, hash, savespikes, loadspikes,
        SpikeTrains, histogram, raster, n_cells,
        inhomogeneous_poisson_process
 

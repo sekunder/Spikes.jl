@@ -50,7 +50,7 @@ end
     loadspikes(h; [dir])
 
 Returns the stimulus saved in `filename` (or identified by hash `h`) as saved by
-`savespikes`. Default `dir` is `Pkg.dir(GrayScaleStimuli)/saved`
+`savespikes`. Default `dir` is `Pkg.dir(Spikes)/saved`
 
 """
 function loadspikes(filename; dir=joinpath(Pkg.dir("GrayScaleStimuli"), "saved"))
@@ -58,4 +58,4 @@ function loadspikes(filename; dir=joinpath(Pkg.dir("GrayScaleStimuli"), "saved")
     _fn = basename(_fn)
     return load(joinpath(dir, _fn), "S")
 end
-loadspikes(h::UInt; dir=joinpath(Pkg.dir("GrayScaleStimuli"),"saved")) = loadspikes(string(h); dir=dir)
+loadspikes(h::UInt; dir=joinpath(Pkg.dir("Spikes"),"saved")) = loadspikes(string(h); dir=dir)
