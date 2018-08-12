@@ -5,6 +5,7 @@ Includes types and methods for handling spike trains.
 """
 module Spikes
 
+using JLD
 import Base: show, isequal, hash
 include("metadata.jl")
 
