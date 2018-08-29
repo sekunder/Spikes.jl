@@ -16,22 +16,19 @@ mutable struct SpikeTrains
     stim_finish::Float64
     metadata::Dict{Any,Any}
 
-    # A note on the field I : it is a list of labels. That is, the label for
-    # TT[i] is I[i]. I will make sure this is enforced throughout the rest of
-    # this project.
-
     function SpikeTrains(TT;
         stim_start=0.0, stim_finish=maximum(map(maximum, TT)),
         rec_start=0.0, rec_finish=max(stim_finish, maximum(map(maximum, TT))),
         kwargs...)
         # use I to select which spike trains to keep, and while we're at it make
         # sure that TT ends up being the right type.
-        trains = [map(Float64, TT[i][rec_start .< TT[i] .< rec_finish]) for i in I]
+        # trains = [map(Float64, TT[i][rec_start .< TT[i] .< rec_finish]) for i in I]
+        trains = [map(Float64, T[rec_start .< T .< rec_finish]) for T in TT]
         new(trains, rec_start, rec_finish, stim_start, stim_finish, Dict(kwargs))
     end
 end
 
-n_cells(ST::SpikeTrains) = length(ST.I)
+n_cells(ST::SpikeTrains) = length(ST.TT)
 
 function show(io::IO, ST::SpikeTrains)
     println(io, "Spike times for $(n_cells(ST)) neurons.")
