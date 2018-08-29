@@ -14,6 +14,7 @@ include("metadata.jl")
 ################################################################################
 include("SpikeTrains.jl")
 include("poissonproc.jl")
+include("fileio.jl")
 # include("CRCNS/CRCNS.jl")
 
 ################################################################################
